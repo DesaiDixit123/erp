@@ -1,0 +1,29 @@
+[15-Jun-2025 11:44:13 America/Boise] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.2.0". You are running 8.1.28. in /home1/abhishub/public_html/chiragdiecast.com/erp/vendor/composer/platform_check.php on line 24
+[15-Jun-2025 11:44:22 America/Boise] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.2.0". You are running 8.1.28. in /home1/abhishub/public_html/chiragdiecast.com/erp/vendor/composer/platform_check.php on line 24
+[15-Jun-2025 11:45:33 America/Boise] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.2.0". You are running 8.1.28. in /home1/abhishub/public_html/chiragdiecast.com/erp/vendor/composer/platform_check.php on line 24
+[15-Jun-2025 12:04:16 America/Boise] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.2.0". You are running 8.1.28. in /home1/abhishub/public_html/chiragdiecast.com/erp/vendor/composer/platform_check.php on line 24
+[15-Jun-2025 12:05:01 America/Boise] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 8.2.0". You are running 8.1.28. in /home1/abhishub/public_html/chiragdiecast.com/erp/vendor/composer/platform_check.php on line 24
+[16-Jun-2025 14:00:24 UTC] PHP Fatal error:  Uncaught ErrorException: Cannot modify header information - headers already sent by (output started at /home1/abhishub/public_html/chiragdiecast.com/erp/vendor/symfony/http-foundation/Response.php:387) in /home1/abhishub/public_html/chiragdiecast.com/erp/vendor/symfony/http-foundation/Response.php:322
+Stack trace:
+#0 /home1/abhishub/public_html/chiragdiecast.com/erp/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(256): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'Cannot modify h...', '/home1/abhishub...', 322)
+#1 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->Illuminate\Foundation\Bootstrap\{closure}(2, 'Cannot modify h...', '/home1/abhishub...', 322)
+#2 /home1/abhishub/public_html/chiragdiecast.com/erp/vendor/symfony/http-foundation/Response.php(322): header('HTTP/1.1 500 In...', true, 500)
+#3 /home1/abhishub/public_html/chiragdiecast.com/erp/vendor/symfony/http-foundation/Response.php(401): Symfony\Component\HttpFoundation\Response->sendHeaders()
+#4 /home1/abhishub/public_html/chiragdiecast.com/erp/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(219): Symfony\Component\HttpFoundation\Response->send()
+#5 /home1/abhishub/public_html/chiragdiecast.com/erp/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(196): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(Illuminate\Encryption\MissingAppKeyException))
+#6 /home1/abhishub/public_html/chiragdiecast.com/erp/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(256): Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(Illuminate\Encryption\MissingAppKeyException))
+#7 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->Illuminate\Foundation\Bootstrap\{closure}(Object(Illuminate\Encryption\MissingAppKeyException))
+#8 {main}
+  thrown in /home1/abhishub/public_html/chiragdiecast.com/erp/vendor/symfony/http-foundation/Response.php on line 322
+[16-Jun-2025 14:00:37 UTC] PHP Fatal error:  Uncaught ErrorException: Cannot modify header information - headers already sent by (output started at /home1/abhishub/public_html/chiragdiecast.com/erp/vendor/symfony/http-foundation/Response.php:387) in /home1/abhishub/public_html/chiragdiecast.com/erp/vendor/symfony/http-foundation/Response.php:322
+Stack trace:
+#0 /home1/abhishub/public_html/chiragdiecast.com/erp/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(256): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'Cannot modify h...', '/home1/abhishub...', 322)
+#1 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->Illuminate\Foundation\Bootstrap\{closure}(2, 'Cannot modify h...', '/home1/abhishub...', 322)
+#2 /home1/abhishub/public_html/chiragdiecast.com/erp/vendor/symfony/http-foundation/Response.php(322): header('HTTP/1.1 500 In...', true, 500)
+#3 /home1/abhishub/public_html/chiragdiecast.com/erp/vendor/symfony/http-foundation/Response.php(401): Symfony\Component\HttpFoundation\Response->sendHeaders()
+#4 /home1/abhishub/public_html/chiragdiecast.com/erp/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(219): Symfony\Component\HttpFoundation\Response->send()
+#5 /home1/abhishub/public_html/chiragdiecast.com/erp/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(196): Illuminate\Foundation\Bootstrap\HandleExceptions->renderHttpResponse(Object(Illuminate\Encryption\MissingAppKeyException))
+#6 /home1/abhishub/public_html/chiragdiecast.com/erp/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(256): Illuminate\Foundation\Bootstrap\HandleExceptions->handleException(Object(Illuminate\Encryption\MissingAppKeyException))
+#7 [internal function]: Illuminate\Foundation\Bootstrap\HandleExceptions->Illuminate\Foundation\Bootstrap\{closure}(Object(Illuminate\Encryption\MissingAppKeyException))
+#8 {main}
+  thrown in /home1/abhishub/public_html/chiragdiecast.com/erp/vendor/symfony/http-foundation/Response.php on line 322

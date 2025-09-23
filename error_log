@@ -1,0 +1,52 @@
+[15-Jun-2025 11:45:52 America/Boise] PHP Fatal error:  Uncaught Error: Undefined constant "_DIR_" in /home1/abhishub/public_html/chiragdiecast.com/erp/index.php:17
+Stack trace:
+#0 {main}
+  thrown in /home1/abhishub/public_html/chiragdiecast.com/erp/index.php on line 17
+[15-Jun-2025 11:47:11 America/Boise] PHP Fatal error:  Uncaught Error: Undefined constant "_DIR_" in /home1/abhishub/public_html/chiragdiecast.com/erp/index.php:17
+Stack trace:
+#0 {main}
+  thrown in /home1/abhishub/public_html/chiragdiecast.com/erp/index.php on line 17
+[15-Jun-2025 11:47:14 America/Boise] PHP Fatal error:  Uncaught Error: Undefined constant "_DIR_" in /home1/abhishub/public_html/chiragdiecast.com/erp/index.php:17
+Stack trace:
+#0 {main}
+  thrown in /home1/abhishub/public_html/chiragdiecast.com/erp/index.php on line 17
+[15-Jun-2025 11:48:17 America/Boise] PHP Fatal error:  Uncaught Error: Undefined constant "_DIR_" in /home1/abhishub/public_html/chiragdiecast.com/erp/index.php:17
+Stack trace:
+#0 {main}
+  thrown in /home1/abhishub/public_html/chiragdiecast.com/erp/index.php on line 17
+[15-Jun-2025 12:04:29 America/Boise] PHP Fatal error:  Uncaught Error: Undefined constant "_DIR_" in /home1/abhishub/public_html/chiragdiecast.com/erp/index.php:17
+Stack trace:
+#0 {main}
+  thrown in /home1/abhishub/public_html/chiragdiecast.com/erp/index.php on line 17
+[15-Jun-2025 12:04:37 America/Boise] PHP Fatal error:  Uncaught Error: Undefined constant "_DIR_" in /home1/abhishub/public_html/chiragdiecast.com/erp/index.php:17
+Stack trace:
+#0 {main}
+  thrown in /home1/abhishub/public_html/chiragdiecast.com/erp/index.php on line 17
+[15-Jun-2025 17:55:15 America/Boise] PHP Fatal error:  Uncaught Error: Undefined constant "_DIR_" in /home1/abhishub/public_html/chiragdiecast.com/erp/index.php:17
+Stack trace:
+#0 {main}
+  thrown in /home1/abhishub/public_html/chiragdiecast.com/erp/index.php on line 17
+[15-Jun-2025 17:55:23 America/Boise] PHP Fatal error:  Uncaught Error: Undefined constant "_DIR_" in /home1/abhishub/public_html/chiragdiecast.com/erp/index.php:17
+Stack trace:
+#0 {main}
+  thrown in /home1/abhishub/public_html/chiragdiecast.com/erp/index.php on line 17
+[16-Jun-2025 02:59:26 America/Boise] PHP Fatal error:  Uncaught Error: Undefined constant "_DIR_" in /home1/abhishub/public_html/chiragdiecast.com/erp/index.php:17
+Stack trace:
+#0 {main}
+  thrown in /home1/abhishub/public_html/chiragdiecast.com/erp/index.php on line 17
+[16-Jun-2025 07:28:08 America/Boise] PHP Fatal error:  Uncaught Error: Undefined constant "_DIR_" in /home1/abhishub/public_html/chiragdiecast.com/erp/index.php:17
+Stack trace:
+#0 {main}
+  thrown in /home1/abhishub/public_html/chiragdiecast.com/erp/index.php on line 17
+[16-Jun-2025 07:51:07 America/Boise] PHP Fatal error:  Uncaught Error: Undefined constant "_DIR_" in /home1/abhishub/public_html/chiragdiecast.com/erp/index.php:17
+Stack trace:
+#0 {main}
+  thrown in /home1/abhishub/public_html/chiragdiecast.com/erp/index.php on line 17
+[16-Jun-2025 08:00:29 America/Boise] PHP Fatal error:  Uncaught Error: Undefined constant "_DIR_" in /home1/abhishub/public_html/chiragdiecast.com/erp/index.php:17
+Stack trace:
+#0 {main}
+  thrown in /home1/abhishub/public_html/chiragdiecast.com/erp/index.php on line 17
+[16-Jun-2025 08:01:10 America/Boise] PHP Fatal error:  Uncaught Error: Undefined constant "_DIR_" in /home1/abhishub/public_html/chiragdiecast.com/erp/index.php:17
+Stack trace:
+#0 {main}
+  thrown in /home1/abhishub/public_html/chiragdiecast.com/erp/index.php on line 17
