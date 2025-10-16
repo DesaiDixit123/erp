@@ -14,8 +14,8 @@ class ProcessRecord extends Model
         return $this->belongsTo(Company::class);
     }
 
-    public function tool()
-    {
-        return $this->belongsTo(Tool::class, 'tool_type_id');
-    }
+ public function tool()
+{
+    return $this->belongsTo(Tool::class, 'tool_type_id');
+}
 }

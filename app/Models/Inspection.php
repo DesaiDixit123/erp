@@ -12,7 +12,13 @@ class Inspection extends Model
         'quantity_inspected',
         'ok_quantity',
         'rejected_quantity',
+        'sound_test',
+        'blow_hole',
+        'trimming',
+        'casting',
+        'non_filling',
         'rejection_reason',
+        'total_rejected'
     ];
 
 
@@ -21,8 +27,8 @@ class Inspection extends Model
         return $this->belongsTo(Company::class);
     }
 
-    public function tool()
-    {
-        return $this->belongsTo(Tool::class, 'tool_type_id');
-    }
+ public function tool()
+{
+    return $this->belongsTo(Tool::class, 'tool_type_id');
+}
 }

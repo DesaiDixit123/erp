@@ -1,7 +1,7 @@
-<link rel="icon" href="{{ asset('img/core-img/favicon.ico') }}">
+ā<link rel="icon" href="{{ asset('img/core-img/favicon.ico') }}">
 <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
 <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
-<link rel="stylesheet" href="{{ asset('style.css') }}">
+<link rel="stylesāheet" href="{{ asset('style.css') }}">
 
 <div id="preloader">
     <div class="scene">
@@ -418,6 +418,33 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
+
+    if (toolId) {
+    $.ajax({
+        url: "{{ url('get-casting-quantity') }}/" + toolId,  // ✅ auto full URL banse
+        type: 'GET',
+        success: function (res) {
+            console.log(res); // debug
+            if (res.success) {
+                // KG input update karo
+                let kgInput = $('input[name="quantity_kg"]');
+                kgInput.attr('max', res.data.quantity_kg);
+                kgInput.val(''); // reset
+
+                // PCS input update karo
+                let pcsInput = $('input[name="quantity_pcs"]');
+                pcsInput.attr('max', res.data.quantity_pcs);
+                pcsInput.val(''); // reset
+            } else {
+                alert(res.message);
+            }
+        },
+        error: function () {
+            alert('Failed to fetch casting quantity!');
+        }
+    });
+}
+
     $(document).ready(function () {
         // 🔹 Jyaare component select thay tyaare casting available qty fetch karo
         $('select[name="tool_type_id"]').change(function () {

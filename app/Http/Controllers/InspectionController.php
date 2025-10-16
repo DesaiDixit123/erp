@@ -73,83 +73,92 @@ public function index(Request $request)
         return view('inspection.create', compact('rejectionReasons'));
     }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'date' => 'required|date',
-            'tool_type_id' => 'required|exists:tools,id',
-            'quantity_inspected' => 'required|integer',
-            'ok_quantity' => 'required|integer',
-            'rejected_quantity' => 'required|integer',
-            'rejection_reason' => 'required|string',
+   public function store(Request $request)
+{
+    $request->validate([
+        'date' => 'required|date',
+        'tool_type_id' => 'required|exists:tools,id',
+        // 'quantity_inspected' => 'required|integer|min:0',
+        'non_filling' => 'nullable|integer|min:0',
+        'trimming' => 'nullable|integer|min:0',
+        'casting' => 'nullable|integer|min:0',
+        'blow_hole' => 'nullable|integer|min:0',
+        'sound_test' => 'nullable|integer|min:0',
+    ]);
+
+    DB::beginTransaction();
+
+    try {
+        // 1. Find trimming stock
+        $trimming = Triming::where('tool_type_id', $request->tool_type_id)->first();
+        if (!$trimming) {
+            return redirect()->back()->with('error', 'No Trimming found for selected component.');
+        }
+
+        if ($request->quantity_inspected > $trimming->quantity_pcs) {
+            return redirect()->back()
+                ->with('error', 'Inspected quantity cannot exceed available trimming quantity (' . $trimming->quantity_pcs . ')');
+        }
+
+        // 2. Auto calculate rejection
+        $totalRejected = 
+            ($request->non_filling ?? 0) +
+            ($request->trimming ?? 0) +
+            ($request->casting ?? 0) +
+            ($request->blow_hole ?? 0) +
+            ($request->sound_test ?? 0);
+
+        $okQty = $request->quantity_inspected - $totalRejected;
+        if ($okQty < 0) $okQty = 0;
+
+        // 3. Subtract from trimming
+        $trimming->quantity_kg -= $request->ok_quantity;
+        $trimming->save();
+
+        // 4. Save or update inspection
+        $inspection = Inspection::firstOrNew([
+            'tool_type_id' => $request->tool_type_id,
+            'date' => $request->date,
         ]);
 
-        DB::beginTransaction();
+        $inspection->ok_quantity += $request->ok_quantity;
+        $inspection->non_filling = ($inspection->non_filling ?? 0) + ($request->non_filling ?? 0);
+        $inspection->trimming    = ($inspection->trimming ?? 0) + ($request->trimming ?? 0);
+        $inspection->casting     = ($inspection->casting ?? 0) + ($request->casting ?? 0);
+        $inspection->blow_hole   = ($inspection->blow_hole ?? 0) + ($request->blow_hole ?? 0);
+        $inspection->sound_test  = ($inspection->sound_test ?? 0) + ($request->sound_test ?? 0);
+        $inspection->total_rejected = ($inspection->total_rejected ?? 0) + $totalRejected;
+        $inspection->ok_quantity = ($inspection->ok_quantity ?? 0) + $okQty;
 
-        try {
-            // 1. Find matching Inspection record
-            $trimming = Triming::where('tool_type_id', $request->tool_type_id)->first();
+        $inspection->save();
 
-            if (!$trimming) {
-                return redirect()->back()->with('error', 'No Trimming found for selected component.');
-            }
+        // 5. Add to process_records
+        DB::table('process_records')->insert([
+            'type_name' => 'Inspections',
+            'date' => $request->date,
+            'tool_type_id' => $request->tool_type_id,
+            'rejected_number' => $totalRejected,
+            'reason_of_rejected' => json_encode([
+                'non_filling' => $request->non_filling,
+                'trimming' => $request->trimming,
+                'casting' => $request->casting,
+                'blow_hole' => $request->blow_hole,
+                'sound_test' => $request->sound_test,
+            ]),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
 
-            // 2. Check if inspection has enough quantity
-            if ($trimming->quantity_inspected < $request->quantity_dispatch) {
-                return redirect()->back()->with('error', 'Not enough quantity available in inspection.');
-            }
+        DB::commit();
+        return redirect()->route('inspection.index')->with('success', 'Inspection saved successfully.');
 
-            // 2. Check if trimming has enough quantity
-            if ($request->quantity_inspected > $trimming->quantity_pcs) {
-                return redirect()->back()->with('error', 'Inspected quantity cannot exceed available trimming quantity (' . $trimming->quantity_pcs . ')');
-            }
+    } catch (\Exception $e) {
+    DB::rollBack();
+    dd($e->getMessage(), $e->getTraceAsString());
+}
 
+}
 
-            // 3. Subtract quantity from inspection
-            $trimming->quantity_pcs -= $request->quantity_inspected;
-            $trimming->save();
-
-            // 4. Check if Dispatch already exists for this tool_type
-            $existingInspection = Inspection::where('tool_type_id', $request->tool_type_id)->first();
-
-            if ($existingInspection) {
-
-
-                $existingInspection->date = $request->date;
-                $existingInspection->ok_quantity = $request->ok_quantity;
-                $existingInspection->rejected_quantity = $request->rejected_quantity;
-                $existingInspection->rejection_reason = $request->rejection_reason;
-                // Update quantity
-                $existingInspection->quantity_inspected += $request->quantity_inspected;
-                $existingInspection->save();
-            } else {
-                // Create new dispatch record
-                Inspection::create($request->all());
-            }
-
-            // 5. Add to process_records table
-            DB::table('process_records')->insert([
-                'type_name' => 'Inspections',
-                'date' => $request->date,
-
-                'quantity_inspected' => $request->quantity_inspected,
-                'tool_type_id' => $request->tool_type_id,
-                'ok_number' => $request->ok_quantity,
-                'rejected_number' => $request->rejected_quantity,
-                'reason_of_rejected' => $request->rejection_reason,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
-
-            DB::commit();
-
-            return redirect()->route('inspection.index')->with('success', 'Inspection saved');
-
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return redirect()->back()->with('error', 'Something went wrong: ' . $e->getMessage());
-        }
-    }
 
 
     public function destroy($id)
